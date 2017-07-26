@@ -1,0 +1,46 @@
+{
+  "name": "decision-tech-vue-seed",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --port=4200",
+    "build": "webpack",
+    "test": "karma start ./karma.conf.js",
+    "dev:test": "karma start ./karma.conf.js --no-single-run"
+  },
+  "author": "Alex Jones <alex.jones@decision.tech>",
+  "license": "ISC",
+  "dependencies": {
+    "base-href-webpack-plugin": "^1.0.2",
+    "copy-webpack-plugin": "^4.0.1",
+    "css-loader": "^0.28.4",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "fetch-mock": "^5.12.1",
+    "html-webpack-plugin": "^2.29.0",
+    "isomorphic-fetch": "^2.2.1",
+    "jasmine-core": "^2.6.4",
+    "json-loader": "^0.5.7",
+    "karma": "^1.7.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-jasmine": "^1.1.0",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^2.0.4",
+    "node-sass": "^4.5.3",
+    "raw-loader": "^0.5.1",
+    "sass-loader": "^6.0.6",
+    "source-map-loader": "^0.2.1",
+    "style-loader": "^0.18.2",
+    "url-loader": "^0.5.9",
+    "vue": "^2.4.2",
+    "vue-loader": "^13.0.2",
+    "vue-style-loader": "^3.0.1",
+    "vue-template-compiler": "^2.4.2",
+    "vuex": "^2.3.1",
+    "webpack": "^3.3.0",
+    "webpack-dev-server": "^2.6.1"
+  },
+  "devDependencies": {
+    "vue-unit": "^0.2.2"
+  }
+}
