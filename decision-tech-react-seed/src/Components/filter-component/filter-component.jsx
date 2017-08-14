@@ -3,6 +3,21 @@ export class Filter extends React.Component {
   constructor() {
     super();
     this.renderFilter = this.renderFilter.bind(this);
+    this.mediaQuery = 'screen and (min-width: 960px)';
+    this.updateMatches = this.updateMatches.bind(this);
+  }
+  componentWillMount() {
+    if (typeof window !== 'object') return;
+    this.mediaQueryList = window.matchMedia(this.mediaQuery);
+    this.mediaQueryList.addListener(this.updateMatches);
+    this.updateMatches();
+  }
+  updateMatches() {
+    if (!this.mediaQueryList) {
+      this.setState({ matches: false });
+      return;
+    }
+    this.setState({ matches: this.mediaQueryList.matches });
   }
   renderFilter(filter) {
     if (!filter.length){
@@ -20,11 +35,13 @@ export class Filter extends React.Component {
         selected={item.selected}
         onclick={this.props.filterCallBack(filter.value, filter.selected)}
       >{item.label}</option>);
-      return (<select key="speeds">{options}</select>);
+      const defaultOption = <option key="defaultOpt" value="">Any</option>;
+      options.unshift(defaultOption);
+      return (<select key="speeds">{defaultOption}{options}</select>);
     }
   }
   render() {
     const filterItems = this.props.filters.map(filter => this.renderFilter(filter));
-    return (<div>{filterItems}</div>);
+    return (this.props.display || this.state.matches) ? (<div>{filterItems}</div>) : null;
   }
 }
