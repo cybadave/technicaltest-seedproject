@@ -42,6 +42,6 @@ export class Filter extends React.Component {
   }
   render() {
     const filterItems = this.props.filters.map(filter => this.renderFilter(filter));
-    return (this.props.display || this.state.matches) ? (<div>{filterItems}</div>) : null;
+    return (this.props.display || this.state.matches) ? (<div className="filter" >{filterItems}</div>) : null;
   }
 }
