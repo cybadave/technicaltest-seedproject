@@ -37,7 +37,7 @@ export class Filter extends React.Component {
       >{item.label}</option>);
       const defaultOption = <option key="defaultOpt" value="">Any</option>;
       options.unshift(defaultOption);
-      return (<select key="speeds">{defaultOption}{options}</select>);
+      return (<select key="speeds">{options}</select>);
     }
   }
   render() {

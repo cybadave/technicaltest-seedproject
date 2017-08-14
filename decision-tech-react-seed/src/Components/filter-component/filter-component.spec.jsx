@@ -25,9 +25,9 @@ describe('The Filter Component',() => {
     expect(filter.node.props.children[0].props.checked).toBe(true);
     expect(filter.node.props.children[1].props.type).toBe('checkbox');
     expect(filter.node.props.children[1].props.checked).toBe(false);
-    expect(filter.node.props.children[2].props.children.length).toBe(2);
-    //expect(filter.node.props.children[2].props.children[1].props.selected).toBe(true);
-    //expect(filter.node.props.children[2].props.children[2].props.selected).toBe(false);
+    expect(filter.node.props.children[2].props.children.length).toBe(3);
+    expect(filter.node.props.children[2].props.children[1].props.selected).toBe(true);
+    expect(filter.node.props.children[2].props.children[2].props.selected).toBe(false);
   });
 
   it('Fires the appropriate callback on click', () => {
