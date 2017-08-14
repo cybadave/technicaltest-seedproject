@@ -1,6 +1,13 @@
 import React from 'react';
 import './app-component.scss';
 import { SiteNav } from '../sitenav/sitenav-component';
+import { Filter } from '../filter-component/filter-component';
+
+var filters = [
+  { label: 'Mobile', value: 'Mobile',  },
+  { label: 'Broadband', value: 'Broadband',  },
+  [ { label: '5GB', value: '5 GB' }, { label: '70 MB/s', value: '70' }, ],
+];
 
 var service = function () {
   return {
@@ -32,6 +39,7 @@ export default class App extends React.Component {
   render() {
     return (<div>
       <SiteNav toggleFunction={this.toggleFilterVisible} />
+      <Filter filters={filters} />
       {JSON.stringify(this.state.deals)}
     </div>);
   }
