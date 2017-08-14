@@ -16,16 +16,22 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      'deals': []
+      'deals': [],
+      'filterVisible': false,
     };
 
     service.fetchDeals().then(deals => {
-      this.setState({ 'deals': deals })
-    })
+      this.setState({ 'deals': deals, 'filterVisible': this.state.filterVisible});
+    });
+    this.toggleFilterVisible = this.toggleFilterVisible.bind(this);
+  }
+  toggleFilterVisible() {
+    console.log('filter toggle');
+    this.setState({ 'deals': this.state.deals, 'filterVisible': !this.state.filterVisible});
   }
   render() {
     return (<div>
-      <SiteNav />
+      <SiteNav toggleFunction={this.toggleFilterVisible} />
       {JSON.stringify(this.state.deals)}
     </div>);
   }
