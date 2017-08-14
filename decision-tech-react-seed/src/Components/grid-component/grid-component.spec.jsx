@@ -18,7 +18,7 @@ const gridDefinition = [
 describe('The Grid Component', () => {
   it('Renders fields using a render function for each field', () => {
     const grid = shallow(<Grid gridData={testData} definition={gridDefinition} />);
-    expect(grid.node.props.children.length).toBe(2);
-    expect(grid.node.props.children[0].length).toBe(2);
+    expect(grid.node.props.children[1].length).toBe(2);
+    expect(grid.node.props.children[1][0].length).toBe(2);
   });
 });

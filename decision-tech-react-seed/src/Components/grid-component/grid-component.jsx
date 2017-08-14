@@ -7,6 +7,10 @@ export class Grid extends React.Component {
       });
       return cells;
     });
-    return <div className="dataGrid">{rows}</div>;
+    const header = this.props.definition.map((d) => <div className="gridHeading">d.title</div>)
+    return (<div className="dataGrid">
+      <div className="gridHeader">{header}</div>
+      {rows}
+    </div>);
   }
 }
