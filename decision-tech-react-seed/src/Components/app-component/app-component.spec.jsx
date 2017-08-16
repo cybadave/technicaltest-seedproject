@@ -1,7 +1,7 @@
 import React from 'react';
 import App from './app-component';
 import { shallow } from 'enzyme';
-import 'isomorphic-fetch'
+import 'isomorphic-fetch';
 var fetchMock = require('fetch-mock');
 
 test('App Deals Response', () => {
