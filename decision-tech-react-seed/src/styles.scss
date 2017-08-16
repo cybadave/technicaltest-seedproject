@@ -17,10 +17,42 @@ ul {
     margin: 0;
 }
 
+select {
+    max-width: 120px;
+}
+
+.dataGrid, #root {
+    width: 100%;
+}
+
+@media screen and (min-width: 1260px){
+    body {
+        display: none;
+    }
+}
+
+nav {
+    background: #dedede;
+}
+
 @media screen and (min-width: 960px) and (max-width: 1260px){
     .filter {
         height: 100%;
         background-color: #dedede;
+        position: fixed;
+        width: 12.5%;
+        padding: 0 0 0 20px;
+    }
+    .gridCell, .gridHeading {
+        width: 12.5%
+    }
+    .gridRow, .gridHeader{
+        width: 100%;
+        display: flex;
+    }
+    .dataGrid {
+        left: 12.5%;
+        position: relative;
     }
 }
 
@@ -29,4 +61,26 @@ ul {
         height: 100%;
         background-color: #333;
     }
+    .gridCell, .gridHeading {
+        width: 100%
+    }
+    .gridHeading {
+        display: none;
+    }
+    .gridRow{
+        width: calc(100% - 15px);
+        display: block;
+        background-color: #dedede;
+        box-shadow: 10px 10px 5px #888888;
+        margin: 0 0 15px 0;
+    }
+    .burgerMenu {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+    }
 }
+
+
+
+
