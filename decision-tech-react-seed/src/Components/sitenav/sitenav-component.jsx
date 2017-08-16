@@ -1,8 +1,8 @@
 import React from 'react';
 import './sitenav-component.scss';
-import {BurgerMenu} from '../burgermenu/burgermenu-component'
+import {BurgerMenu} from '../burgermenu/burgermenu-component';
 export class SiteNav extends React.Component {
   render() {
-    return (<nav><div id="logo"></div><BurgerMenu></BurgerMenu></nav>);
+    return (<nav><div id="logo"></div><BurgerMenu toggleFunction={this.props.toggleFunction}></BurgerMenu></nav>);
   }
 }
