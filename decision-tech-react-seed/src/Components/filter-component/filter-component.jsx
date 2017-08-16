@@ -1,10 +1,12 @@
 import React from 'react';
+import {SelectFilter} from "./select-filter-component";
 export class Filter extends React.Component {
   constructor() {
     super();
     this.renderFilter = this.renderFilter.bind(this);
     this.mediaQuery = 'screen and (min-width: 960px)';
     this.updateMatches = this.updateMatches.bind(this);
+    this.handleSpeedChange = this.handleSpeedChange.bind(this);
   }
   componentWillMount() {
     if (typeof window !== 'object') return;
@@ -19,29 +21,34 @@ export class Filter extends React.Component {
     }
     this.setState({ matches: this.mediaQueryList.matches });
   }
-  renderFilter(filter) {
-    if (!filter.length){
-      return (<input
-        key={filter.value}
+  handleSpeedChange(event) {
+    this.props.filterCallBack(event.target.value, false);
+  }
+  renderFilter(filter, filterName) {
+    const { filterCallBack } = this.props;
+    return (<li key={filterName} >
+      <input
+        id={`filter${filterName}`}
         type="checkbox"
-        value={filter.value}
-        checked={filter.selected}
-        onclick={this.props.filterCallBack(filter.value, filter.selected)}
-      >{filter.label}</input>);
-    }else{
-      const options =  filter.map(item => <option
-        key={item.value}
-        value={item.value}
-        selected={item.selected}
-        onclick={this.props.filterCallBack(filter.value, filter.selected)}
-      >{item.label}</option>);
-      const defaultOption = <option key="defaultOpt" value="">Any</option>;
-      options.unshift(defaultOption);
-      return (<select key="speeds">{options}</select>);
-    }
+        key={filterName}
+        checked={filter}
+        onClick={() => filterCallBack(filterName, filter)}
+      />
+      <label htmlFor={`filter${filterName}`}>{filterName}</label>
+    </li>);
   }
   render() {
-    const filterItems = this.props.filters.map(filter => this.renderFilter(filter));
-    return (this.props.display || this.state.matches) ? (<div className="filter" >{filterItems}</div>) : null;
+    const {
+      filters,
+      display,
+      speedFilters,
+      speedFilterCallBack,
+    } = this.props;
+    const {
+      matches
+    } = this.state;
+
+    const filterItems = Object.keys(filters).map(filterName => this.renderFilter(filters[filterName],filterName));
+    return (display || matches) ? (<ul className="filter" >{filterItems}<SelectFilter filters={speedFilters} filterCallBack={speedFilterCallBack} /></ul>) : null;
   }
 }

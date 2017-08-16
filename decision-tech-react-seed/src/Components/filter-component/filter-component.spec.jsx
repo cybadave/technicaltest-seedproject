@@ -13,26 +13,22 @@ let originalMatchMedia = window.matchMedia;
 describe('The Filter Component',() => {
 
   window.matchMedia = createMockMediaMatcher(false);
-  let filters = [
-    { label: 'Mobile', value: 'Mobile', selected: true,  },
-    { label: 'Broadband', value: 'Broadband', selected: false,  },
-    [ { label: '5GB', value: '5 GB', selected: true, }, { label: '70 MB/s', value: '70', selected: false, } ],
-  ];
-  const callBack = () => filters[0].selected = false;
+  let filters = {
+    'Mobile': true,
+    'Broadband': false,
+  };
+  const callBack = () => filters.Mobile = false;
   const filter = shallow(<Filter filters={filters} filterCallBack={callBack} display={true} />);
   it('Renders given filters', () => {
-    expect(filter.node.props.children[0].props.type).toBe('checkbox');
-    expect(filter.node.props.children[0].props.checked).toBe(true);
-    expect(filter.node.props.children[1].props.type).toBe('checkbox');
-    expect(filter.node.props.children[1].props.checked).toBe(false);
-    expect(filter.node.props.children[2].props.children.length).toBe(3);
-    expect(filter.node.props.children[2].props.children[1].props.selected).toBe(true);
-    expect(filter.node.props.children[2].props.children[2].props.selected).toBe(false);
+    expect(filter.node.props.children[0][0].props.children[0].props.type).toBe('checkbox');
+    expect(filter.node.props.children[0][0].props.children[0].props.checked).toBe(true);
+    expect(filter.node.props.children[0][1].props.children[0].props.type).toBe('checkbox');
+    expect(filter.node.props.children[0][1].props.children[0].props.checked).toBe(false);
   });
 
   it('Fires the appropriate callback on click', () => {
     filter.find('input').first().simulate('click');
-    expect(filters[0].selected).toBe(false);
+    expect(filters.Mobile).toBe(false);
   });
 
   it('Renders when either the display flag is true or in desktop mode', () => {
